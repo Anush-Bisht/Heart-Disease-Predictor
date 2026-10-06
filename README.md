@@ -1,7 +1,7 @@
 # ❤️ Heart Disease Predictor
 
 A web app that estimates heart disease risk from clinical measurements.
-A scikit-learn **KNN** model is served by **Flask**, with a front end built in plain **HTML, CSS and JavaScript**.
+A scikit-learn **SVM** model is served by **Flask**, with a front end built in plain **HTML, CSS and JavaScript**.
 
 ![Screenshot](screenshots/home.png)
 
@@ -14,7 +14,7 @@ A scikit-learn **KNN** model is served by **Flask**, with a front end built in p
 ## Tech stack
 | Part | Tools |
 |---|---|
-| Model | scikit-learn (encoding + scaling + KNN pipeline) |
+| Model | scikit-learn (encoding + scaling + SVM pipeline) |
 | Backend | Flask, joblib, pandas |
 | Frontend | HTML, CSS, JavaScript |
 
@@ -48,7 +48,7 @@ Evaluated with 5-fold cross-validation on 918 patients:
 | Accuracy | about 86% |
 | Recall (heart disease detected) | about 91% |
 
-Several models (SVM, Random Forest, Logistic Regression, Gradient Boosting) scored within 1 point of KNN, so the limit comes mostly from dataset size.
+SVM was chosen after comparing it with KNN, Random Forest, Logistic Regression and Gradient Boosting. All scored within about 1 point of each other, so the limit comes mostly from dataset size.
 
 ## Dataset
 [Heart Failure Prediction Dataset](https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction) (Kaggle), 918 patients, 11 features.
