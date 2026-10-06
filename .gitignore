@@ -1,0 +1,5 @@
+venv/
+__pycache__/
+.ipynb_checkpoints/
+old_model/
+Project 1(VS-CODE)/

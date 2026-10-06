@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Heart Disease Predictor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <div class="logo">♥</div>
+    <h1>Heart Disease Predictor</h1>
+    <p>Enter your clinical details to estimate heart disease risk. Model accuracy on test data: <b>{{ accuracy }}%</b></p>
+  </header>
+
+  <form id="form" novalidate>
+    <section>
+      <h2>Basic info</h2>
+      <div class="grid">
+        <label>Age (years)<input type="number" name="Age" min="1" max="120" required></label>
+        <label>Sex
+          <select name="Sex" required><option value="">Select</option><option value="M">Male</option><option value="F">Female</option></select></label>
+      </div>
+    </section>
+
+    <section>
+      <h2>Vitals &amp; blood tests</h2>
+      <div class="grid">
+        <label>Resting BP (mm Hg)<input type="number" name="RestingBP" min="50" max="250" placeholder="e.g. 130"></label>
+        <label>Cholesterol (mg/dL)<input type="number" name="Cholesterol" min="50" max="700" placeholder="Leave blank if unknown"></label>
+        <label>Fasting blood sugar &gt; 120 mg/dL
+          <select name="FastingBS" required><option value="">Select</option><option value="0">No</option><option value="1">Yes</option></select></label>
+        <label>Max heart rate (bpm)<input type="number" name="MaxHR" min="50" max="230" required></label>
+      </div>
+    </section>
+
+    <section>
+      <h2>Symptoms &amp; ECG</h2>
+      <div class="grid">
+        <label>Chest pain type
+          <select name="ChestPainType" required><option value="">Select</option>
+            <option value="ATA">Atypical angina</option><option value="NAP">Non-anginal pain</option>
+            <option value="TA">Typical angina</option><option value="ASY">Asymptomatic</option></select></label>
+        <label>Resting ECG
+          <select name="RestingECG" required><option value="">Select</option>
+            <option value="Normal">Normal</option><option value="ST">ST-T wave abnormality</option>
+            <option value="LVH">Left ventricular hypertrophy</option></select></label>
+        <label>Exercise-induced angina
+          <select name="ExerciseAngina" required><option value="">Select</option><option value="N">No</option><option value="Y">Yes</option></select></label>
+        <label>Oldpeak (ST depression)<input type="number" name="Oldpeak" step="0.1" min="-3" max="7" required></label>
+        <label>ST slope
+          <select name="ST_Slope" required><option value="">Select</option>
+            <option value="Up">Upsloping</option><option value="Flat">Flat</option><option value="Down">Downsloping</option></select></label>
+      </div>
+    </section>
+
+    <p id="error" role="alert"></p>
+    <div class="actions">
+      <button type="submit" id="btn">Predict risk</button>
+      <button type="reset" class="ghost" id="reset">Reset</button>
+    </div>
+  </form>
+
+  <div id="result" class="result" hidden>
+    <div class="meter"><div id="bar"></div></div>
+    <h3 id="label"></h3>
+    <p id="detail"></p>
+  </div>
+
+  <footer>For education only. This is not a medical diagnosis, so please consult a doctor.</footer>
+</main>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
