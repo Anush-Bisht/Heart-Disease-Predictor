@@ -2,6 +2,7 @@ import joblib, pandas as pd
 from flask import Flask, jsonify, render_template, request
 
 app = Flask(__name__)
+THRESHOLD = 0.40  # lower than 0.5 to catch more real patients (screening)
 bundle = joblib.load("model.pkl")
 pipe, FEATURES, MEANS = bundle["pipeline"], bundle["features"], bundle["means"]
 
@@ -47,7 +48,7 @@ def predict():
 
     X = pd.DataFrame([row])[FEATURES]
     prob = float(pipe.predict_proba(X)[0][1])
-    return jsonify(probability=round(prob * 100, 1), prediction=int(prob >= 0.5))
+    return jsonify(probability=round(prob * 100, 1), prediction=int(prob >= THRESHOLD))
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)

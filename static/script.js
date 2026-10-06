@@ -46,14 +46,14 @@ form.addEventListener("submit", async (e) => {
 
 function showResult(p) {
   let color, title;
-  if (p < 35) { color = "var(--ok)"; title = "Low risk"; }
-  else if (p < 65) { color = "var(--warn)"; title = "Moderate risk"; }
+  if (p < 30) { color = "var(--ok)"; title = "Low risk"; }
+  else if (p < 60) { color = "var(--warn)"; title = "Moderate risk"; }
   else { color = "var(--accent)"; title = "High risk"; }
 
   document.getElementById("label").textContent = `${title} (${p}%)`;
   document.getElementById("label").style.color = color;
   document.getElementById("detail").textContent =
-    p >= 50
+    p >= 40
       ? "The model sees patterns similar to patients with heart disease. Please consult a cardiologist."
       : "The model sees patterns similar to patients without heart disease. Keep up regular check-ups.";
   bar.style.background = color;
